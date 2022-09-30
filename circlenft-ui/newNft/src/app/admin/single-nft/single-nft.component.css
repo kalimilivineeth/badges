@@ -1,0 +1,45 @@
+.back{
+    background-color: #0d2128;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.margin{
+    margin-top: 5%;
+}
+
+.cback{
+    position: absolute;
+    bottom: 5%;
+    left: 45%;
+}
+
+.pop:hover{
+    transform: scale(1.5);
+    transition:ease-out 0.5s
+}
+
+
+.invisble{
+    overflow: auto;
+}
+.invisble::-webkit-scrollbar{
+    display: none !important;
+}
+
+.word{
+    word-break: break-all;
+    max-width: 100px;
+    padding-right: 10px;
+}
+
+#change:hover{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}

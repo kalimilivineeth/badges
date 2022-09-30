@@ -1,0 +1,68 @@
+video {  
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
+.top{
+    margin-top:10px ;
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    color: white;
+    text-transform: uppercase; 
+    background-image: linear-gradient(to right, #00F260, #f79d00, #0575E6, #64f38c);
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
+    background-size: 300%;
+    background-position: -100%;  
+    animation: animatedText 3s infinite alternate-reverse;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+@keyframes animatedText{
+    to{
+      background-position: 100%; 
+    }
+}
+
+.card{
+    background: rgba( 255, 255, 255, 0.05 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    max-width: 80% !important;
+}
+
+.tabs{
+    font-size:20px;
+    color: rgb(255, 255, 255);
+}
+
+
+:host ::ng-deep.mat-form-field-outline {
+    color:white   
+}
+
+.new{
+    color: white;
+}
+.new:hover{
+    text-decoration: underline;
+    color: #0575E6;
+    cursor: pointer;
+}
+
+.image{
+    position: absolute;
+    top: 10%;
+}

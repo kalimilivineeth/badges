@@ -1,0 +1,51 @@
+<h1 mat-dialog-title class="text-center font-weight-bold">History</h1>
+<div mat-dialog-content>
+    <table mat-table class="w-100" [dataSource]="nfts">
+        <ng-container matColumnDef="TxVersion">
+            <th mat-header-cell *matHeaderCellDef >Tx Version</th>
+            <td mat-cell *matCellDef="let nfts; ">{{nfts.TxVersion}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nftId">
+            <th mat-header-cell  *matHeaderCellDef id="move">NFT ID</th>
+            <td mat-cell *matCellDef="let nfts" id="move">
+                {{nfts.Value.nftId}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nftOwner">
+            <th mat-header-cell *matHeaderCellDef >NFT Owner</th>
+            <td mat-cell *matCellDef="let nfts">{{nfts.Value.nftOwner}}</td>
+        </ng-container>
+        <ng-container matColumnDef="practice">
+            <th mat-header-cell *matHeaderCellDef >Course Name</th>
+            <td mat-cell *matCellDef="let nfts" >{{nfts.Value.practice}}</td>
+        </ng-container>
+        <ng-container matColumnDef="circle">
+            <th mat-header-cell *matHeaderCellDef >Course Name</th>
+            <td mat-cell *matCellDef="let nfts" >{{nfts.Value.circle}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="masteryLevel">
+            <th mat-header-cell *matHeaderCellDef>Mastery Level</th>
+            <td mat-cell *matCellDef="let nfts">{{nfts.Value.masteryLevel}}</td>
+        </ng-container>
+        <ng-container matColumnDef="expiryDate">
+            <th mat-header-cell *matHeaderCellDef >Expiry Date</th>
+            <td mat-cell id="change" *matCellDef="let nfts">{{nfts.Value.expiryDate}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nftStatus">
+            <th mat-header-cell *matHeaderCellDef >NFT Status</th>
+            <td mat-cell *matCellDef="let nfts">{{nfts.Value.nftStatus}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Timestamp">
+            <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+            <td mat-cell *matCellDef="let nfts">{{nfts.Timestamp}}</td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky:true"></tr>
+        <tr mat-row *matRowDef="let bookings; columns:columnsToDisplay"></tr>
+    </table>
+</div>
+<div mat-dialog-actions fxLayoutAlign="end" >
+  <button mat-raised-button mat-dialog-close color="primary">Ok</button>
+</div>

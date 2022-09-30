@@ -1,0 +1,203 @@
+<div>
+    <video  preload="auto" loop muted playsinline #playvideo>
+        <source src="assets/intro.webm" type="video/webm">
+    </video>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="start center">
+    <div fxFlex="1 1 60%">    
+    <div >
+        <h1 class="top">COLLABERA®</h1>
+    </div>
+    <div>
+        <img src="assets/logo.png" alt="" width="50%" class="image">
+    </div>
+    </div>
+    <div fxFlex="1 1 40%" style="margin-top: 100px;">
+        <div class="card">
+            <mat-tab-group mat-align-tabs="start">
+                <mat-tab>
+                    <ng-template mat-tab-label><div class="tabs">Admin</div></ng-template>
+                    <form [formGroup]="adminLogin" class="w-100" >
+                        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" style="margin-top:30px ;">
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">UserName</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your userName" autocomplete="off" formControlName="userName">
+                                <mat-hint align="end" class="text-white">Your Username</mat-hint>
+                                <mat-error><strong>UserName </strong>can't be blank</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Password</mat-label>
+                                <input style="color: white;" type="password" matInput placeholder="Enter your password" autocomplete="off" formControlName="password">
+                                <mat-hint align="end" class="text-white">Your password</mat-hint>
+                                <mat-error><strong>password </strong>can't be blank</mat-error>
+                            </mat-form-field>
+                            
+                            <div class="mb">
+                                <button mat-raised-button color="primary" style="width: 150px;" (click)="adminlog()">Login</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    
+                </mat-tab>
+                <mat-tab label="User">
+                    <ng-template mat-tab-label><div class="tabs">User</div></ng-template>
+                    <form [formGroup]="userLogin" class="w-100" *ngIf="!updatePass && !createAcc">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" style="margin-top:30px ;">
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">UserName</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your userName" autocomplete="off" formControlName="userName">
+                                <mat-hint align="end" class="text-white">Your Username</mat-hint>
+                                <mat-error><strong>UserName </strong>can't be blank</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Password</mat-label>
+                                <input style="color: white;" type="password" matInput placeholder="Enter your password" autocomplete="off" formControlName="password">
+                                <mat-hint align="end" class="text-white">Your password</mat-hint>
+                                <mat-error><strong>password </strong>can't be blank</mat-error>
+                            </mat-form-field>
+                            <div class="new">
+                                <p (click)="newacc()" >Create New Account</p>
+                            </div>
+                            <div class="new">
+                                <p (click)="updatepassw()" >Update Password</p>
+                            </div>
+                            <div class="mb">
+                                <button mat-raised-button color="primary" style="width: 150px;" (click)="userlog()">Login</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form [formGroup]="createAccount" *ngIf="createAcc">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" style="margin-top:30px ;">
+
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Email</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your Email" formControlName="email">
+                                <mat-hint align="end" class="text-white">Your Email</mat-hint>
+                                <mat-error 
+                            *ngIf="getFormControl('email').hasError('required')" 
+                            [innerHTML]="getErrorMessage('email','required')"
+                        ></mat-error>
+                        <mat-error *ngIf="getFormControl('email').hasError('email')" 
+                            [innerHTML]="getErrorMessage('email','email')"
+                        ></mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">UserName</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your userName" formControlName="userName">
+                                <mat-hint align="end" class="text-white">Your Username</mat-hint>
+                                <mat-error><strong>UserName </strong>can't be blank</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Password</mat-label>
+                                <input style="color: white;" type="password" matInput placeholder="Enter your password" formControlName="password">
+                                <mat-hint align="end" class="text-white">Your password</mat-hint>
+                                <mat-error><strong>password </strong>can't be blank</mat-error>
+                            </mat-form-field>
+                            
+                            <!-- <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Role</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your Role" formControlName="role">
+                                <mat-hint align="end" class="text-white">Your Role</mat-hint>
+                                <mat-error><strong>Role </strong>can't be blank</mat-error>
+                            </mat-form-field> -->
+                            <!-- <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">passwordAllocatedBy</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your password" formControlName="passwordAllocatedBy">
+                                <mat-hint align="end" class="text-white">Your passwordAllocatedBy</mat-hint>
+                                <mat-error><strong>passwordAllocatedBy </strong>can't be blank</mat-error>
+                            </mat-form-field> -->
+                            <div class="mb">
+                                <button mat-raised-button color="primary" (click)="signup()" style="width: 150px;">SignUp</button>
+                            </div>
+                            <div class="mb">
+                                <button mat-raised-button color="warn" style="width: 150px;" (click)="back()">Back</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
+
+
+
+                    <form [formGroup]="updatePassword" *ngIf="updatePass">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" style="margin-top:30px ;">
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">UserName</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your userName" formControlName="userName" autocomplete="off">
+                                <mat-hint align="end" class="text-white">Your Username</mat-hint>
+                                <mat-error><strong style="font-size:small;">UserName </strong>can't be blank</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Old Password</mat-label>
+                                <input style="color: white;" type="password" matInput placeholder="Enter your password" formControlName="old_password">
+                                <mat-hint align="end" class="text-white">old password</mat-hint>
+                                <mat-error><strong style="font-size:small;">password </strong>can't be blank</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">New Password</mat-label>
+                                <input matInput class="text-white" type="password" placeholder="Password" formControlName="new_password"/>
+                                <mat-hint align="end" class="text-white">new password</mat-hint>
+                                <mat-error *ngIf="updatePassword.get('new_password').hasError('required')"><strong style="font-size:small;">password </strong>is required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Confirm Password</mat-label>
+                                <input matInput class="text-white" placeholder="Confirm your password..." formControlName="confirm_password" type="password"/>
+                                <mat-hint align="end" class="text-white">confirm password</mat-hint>
+                                <mat-error *ngIf="updatePassword.get('confirm_password').hasError('required')">
+                                    <strong style="font-size:small;">password confirmation </strong>is required
+                                </mat-error>
+                                <mat-error *ngIf="updatePassword.get('confirm_password').hasError('not_matching')">
+                                    <strong style="font-size:small;">password </strong>does not match
+                                </mat-error>
+                              </mat-form-field>
+                            <div class="mb">
+                                <button mat-raised-button color="primary" style="width: 150px;" (click)="updatesubmit()">Update</button>
+                            </div>
+                            <div class="mb">
+                                <button mat-raised-button color="warn" style="width: 150px;" (click)="backupdate()">Back</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </mat-tab>
+                <mat-tab label="External">
+                    <ng-template mat-tab-label><div class="tabs">External</div></ng-template>
+                    <form [formGroup]="externalLogin" class="w-100">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" style="margin-top:30px ;">
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">UserName</mat-label>
+                                <input style="color: white;" type="text" matInput placeholder="Enter your userName" autocomplete="off" formControlName="userName">
+                                <mat-hint align="end" class="text-white">Your Username</mat-hint>
+                                <mat-error><strong>UserName </strong>can't be blank</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-70" appearance="outline">
+                                <mat-label style="color:white ;">Password</mat-label>
+                                <input style="color: white;" type="password" matInput placeholder="Enter your password" autocomplete="off" formControlName="password">
+                                <mat-hint align="end" class="text-white">Your password</mat-hint>
+                                <mat-error><strong>password </strong>can't be blank</mat-error>
+                            </mat-form-field>
+                            
+
+                            <div class="mb">
+                                <button mat-raised-button color="primary" style="width: 150px;" (click)="externallog()">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
+
+<div style="position:absolute ; left: 45%; bottom: 10%;">
+    <button mat-stroked-button style="color: white; border: white solid; width: 100px;" (click)="change()">Play</button>
+</div>

@@ -1,0 +1,89 @@
+<div class="back"></div>
+<div class="page-title" [ngClass.lt-md]="{'text-left':true}">Validate Nft</div>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutAlign.lt-md="start center" fxLayoutGap="30px">
+    <div fxFlex="1 1 60%" fxFlex.lt-md="1 1 100%">
+        <div>
+            <mat-card style="max-width:600px ; margin-left: 40px; height:690px">
+                <mat-card-content align="center" style="height:fit-content ;">
+                 <form [formGroup]="validateNft">
+                    <mat-form-field class="w-90" appearance="outline" >
+                        <mat-label>User Name :</mat-label>
+                        <input type="text" placeholder="Enter userName" matInput  formControlName="userName">
+                        <mat-hint align="end">your username</mat-hint>
+                        <mat-error><strong>User Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>First Name :</mat-label>
+                        <input type="text" placeholder="Enter firstName" matInput  formControlName="fName">
+                        <mat-hint align="end">your firstname</mat-hint>
+                        <mat-error><strong>First Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Last Name :</mat-label>
+                        <input type="text" placeholder="Enter lastName" matInput  formControlName="lName">
+                        <mat-hint align="end">your lastname</mat-hint>
+                        <mat-error><strong>Last Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-90" appearance="outline" >
+                        <mat-label>Practice :</mat-label>
+                        <input type="text" placeholder="Enter Practice" matInput  formControlName="practice">
+                        <mat-hint align="end">your practice</mat-hint>
+                        <mat-error><strong>Practice </strong>can't be blank</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-90" appearance="outline" >
+                        <mat-label>Circle :</mat-label>
+                        <input type="text" placeholder="Enter circle" matInput  formControlName="circle">
+                        <mat-hint align="end">your circle</mat-hint>
+                        <mat-error><strong>Circle </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-90" appearance="outline" >
+                        <mat-label>Mastery Level :</mat-label>
+                        <mat-select formControlName="masteryLevel">
+                            <mat-option  value="null" disabled>-- Select --</mat-option>
+                            <mat-option (click)="imgselect()" *ngFor="let level of level" [value]="level" >{{level}}</mat-option>
+                        </mat-select>
+                        <mat-hint align="end">your masteryLevel</mat-hint>
+                        <mat-error><strong>Mastery Level </strong>can't be blank</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Email Id :</mat-label>
+                        <input type="text" placeholder="Enter masteryLevel" matInput  formControlName="emailId">
+                        <mat-hint align="end">your emailId</mat-hint>
+                        <mat-error><strong>Email Id </strong>can't be blank</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>URL :</mat-label>
+                        <input type="text" placeholder="Enter masteryLevel" matInput  formControlName="url">
+                        <mat-hint align="end">Enter Url</mat-hint>
+                        <mat-error><strong>url </strong>can't be blank</mat-error>
+                    </mat-form-field> 
+
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>NFT Id :</mat-label>
+                        <input type="text" placeholder="Enter masteryLevel" matInput  formControlName="nftId">
+                        <mat-hint align="end">Enter your NFT Id</mat-hint>
+                        <mat-error><strong>Nft Id </strong>can't be blank</mat-error>
+                    </mat-form-field> 
+
+                    <div>
+                        <button mat-raised-button color="primary" (click)="validate()">Validate NFT</button>
+                    </div>   
+                 </form>
+                </mat-card-content>
+              </mat-card>
+        </div>
+    </div>
+    <div fxFlex=" 1 1 40%" fxHide.lt-md>
+        <img src="{{imgs}}" class="pop" alt="" width="40%" style="margin-top: 100px; margin-left: 150px;">
+    </div>
+    <div>
+        <button [routerLink]="['/external','externalOperation']" mat-raised-button color="primary" class="cback" style="width:125px ;" [ngClass.lt-lg]="{'backbutton':true}">Back</button>
+    </div>
+    
+</div>

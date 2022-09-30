@@ -1,0 +1,281 @@
+<div class="back"></div>
+<!-- <div class="page-title">Issue NFT
+  <span><button [routerLink]="['/admin','adminoperation']" mat-raised-button color="primary">Back</button></span>
+</div> -->
+<div class="page-title" fxLayout="row">
+  <div style="margin: auto;">Issue NFT</div>
+  <div><a [routerLink]="['/admin','adminoperation']" mat-raised-button color="primary" class="mr"><mat-icon>arrow_back</mat-icon> &nbsp; Back</a></div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutAlign.lt-md="start center" fxLayoutGap="30px" class="table-container2">
+    <div fxFlex="1 1 60%" fxFlex.lt-md="1 1 100%">
+        <div>
+            <mat-card style="max-width:600px ; margin-left: 40px; height: 695px">
+                
+                <mat-card-content align="center" style="height:fit-content ;">
+                 <form [formGroup]="issueNftFrom">
+                    <mat-form-field class="w-90 mt" appearance="outline" >
+                        <mat-label>User Name :</mat-label>
+                        <input type="text" placeholder="Enter UserName"readonly matInput  formControlName="userName">
+                        <mat-error><strong>User Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>First Name :</mat-label>
+                        <input type="text" placeholder="Enter FirstName" readonly matInput  formControlName="fName">
+                        <mat-error><strong>First Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Last Name :</mat-label>
+                        <input type="text" placeholder="Enter LastName" readonly  matInput  formControlName="lName">
+                        <mat-error><strong>Last Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Email Id :</mat-label>
+                        <input 
+                          type="email" readonly 
+                          matInput placeholder="Enter Email" 
+                          formControlName="emailId"
+                          [errorStateMatcher]="customError"
+                        >
+                        <mat-error 
+                            *ngIf="getFormControl('emailId').hasError('required')" 
+                            [innerHTML]="getErrorMessage('emailId','required')"
+                        ></mat-error>
+                        <mat-error *ngIf="getFormControl('emailId').hasError('email')" 
+                            [innerHTML]="getErrorMessage('emailId','email')"
+                        ></mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Practice</mat-label>
+                        <mat-select formControlName="practice"  (selectionChange)="select()">
+                          <mat-option value="Platform">Platform</mat-option>
+                          <mat-option value="Experience">Experience</mat-option>
+                          <mat-option value="Cloud">Cloud</mat-option>
+                          <mat-option value="Data & AI">Data & AI</mat-option>
+                          <mat-option value="Quality Engineering">Quality Engineering</mat-option>
+                          <mat-option value="Health Tech">Health Tech</mat-option>
+                          <mat-option value="Web3.0">Web3.0</mat-option>
+                        </mat-select>
+                        <mat-error><strong>Parent Cricle </strong>can't be blank</mat-error>
+                      </mat-form-field>
+
+                    <!-- <mat-form-field class="w-90" appearance="outline" >
+                        <mat-label>Parent CIrcle :</mat-label>
+                        <input type="text" [matMenuTriggerFor]="parentMenu" placeholder="Enter circleName" matInput  formControlName="parentCircleName">
+                        <mat-icon matSuffix>expand_more</mat-icon>
+                        <mat-error><strong>Parent Circle Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    <mat-menu #parentMenu="matMenu" id="invisble">
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('parentCircleName').setValue('Platform')"   [matMenuTriggerFor]="childerMenu1">Platform</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('parentCircleName').setValue('Experience')" [matMenuTriggerFor]="childerMenu2">Experience</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('parentCircleName').setValue('Cloud')" [matMenuTriggerFor]="childerMenu3">Cloud</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('parentCircleName').setValue('Data & AI')" [matMenuTriggerFor]="childerMenu4">Data & AI</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('parentCircleName').setValue('Quality Engineering & Health Tech')" [matMenuTriggerFor]="childerMenu5">Quality Engineering & Health Tech</button>
+                    </mat-menu>
+                    <mat-menu #childerMenu1="matMenu" id="invisble">
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue('Enterprise Solution & Architecture')" [matMenuTriggerFor]="materMenu">Enterprise Solution & Architecture</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('circleName').setValue('Engineering Management')" [matMenuTriggerFor]="materMenu">Engineering Management</button>
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue('Product')" [matMenuTriggerFor]="materMenu">Product</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('circleName').setValue('DevOps &SRE')" [matMenuTriggerFor]="materMenu">DevOps &SRE</button>
+                    </mat-menu>
+                    <mat-menu #childerMenu2="matMenu" id="invisble">
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue(' Backend')" [matMenuTriggerFor]="materMenu"> Backend</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('circleName').setValue('Frontend')" [matMenuTriggerFor]="materMenu">Frontend</button>
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue(' Frontend -SAP &SF')" [matMenuTriggerFor]="materMenu"> Frontend -SAP &SF</button>
+                    </mat-menu>
+                    <mat-menu #childerMenu3="matMenu" id="invisble">
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue('Cloud Native Development')" [matMenuTriggerFor]="materMenu">Cloud Native Development</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('circleName').setValue('Cloud Operations')" [matMenuTriggerFor]="materMenu">Cloud Operations</button>
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue('Cloud Architecture')" [matMenuTriggerFor]="materMenu">Cloud Architecture</button>
+                    </mat-menu>
+                    <mat-menu #childerMenu4="matMenu" id="invisble">
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue('AIML')" [matMenuTriggerFor]="materMenu">AIML</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('circleName').setValue('Full Stack Analysis')" [matMenuTriggerFor]="materMenu">Full Stack Analysis</button>
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue('Data Engineering')" [matMenuTriggerFor]="materMenu">Data Engineering</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('circleName').setValue('Database')" [matMenuTriggerFor]="materMenu">Database</button>
+                    </mat-menu>
+                    <mat-menu #childerMenu5="matMenu" id="hide">
+                        <button mat-menu-item class="invisble"(mouseenter)="issueNftFrom.get('circleName').setValue('Quality')" [matMenuTriggerFor]="materMenu">Quality</button>
+                        <button mat-menu-item class="invisble" (mouseenter)="issueNftFrom.get('circleName').setValue('Health Tech')" [matMenuTriggerFor]="materMenu">Health Tech</button>
+                    </mat-menu>
+                    <mat-menu #materMenu="matMenu" id="invisble">
+                        <button class="invisble" (mouseenter)="issueNftFrom.get('masteryLevel').setValue('Apprentice')" (mouseenter)="issueNftFrom.get('url').setValue('assets/Exp.png')" (mouseenter)="imgs='assets/Exp.png'"   mat-menu-item>Apprentice</button>
+                        <button class="invisble" (mouseenter)="issueNftFrom.get('masteryLevel').setValue('CraftSmith')" (mouseenter)="issueNftFrom.get('url').setValue('assets/Data.png')" (mouseenter)="imgs='assets/Data.png'" mat-menu-item>CraftSmith</button>
+                        <button class="invisble" (mouseenter)="issueNftFrom.get('masteryLevel').setValue('Artisan')" (mouseenter)="issueNftFrom.get('url').setValue('assets/Quality.png')" (mouseenter)="imgs='assets/Quality.png'" mat-menu-item>Artisan</button>
+                        <button class="invisble" (mouseenter)="issueNftFrom.get('masteryLevel').setValue('CraftSmith')" (mouseenter)="issueNftFrom.get('url').setValue('assets/Platform.png')" (mouseenter)="imgs='assets/Platform.png'" mat-menu-item>Master</button>
+                        <button class="invisble" (mouseenter)="issueNftFrom.get('masteryLevel').setValue('Artisan')" (mouseenter)="issueNftFrom.get('url').setValue('assets/Cloud.png')" (mouseenter)="imgs='assets/Cloud.png'" mat-menu-item>Grandmaster</button>
+                    </mat-menu> -->
+    
+                    <!-- <mat-form-field class="w-90" appearance="outline" >
+                        <mat-label>Circle Name :</mat-label>
+                        <input type="text" placeholder="Enter circleName" matInput  formControlName="circleName">
+                        <mat-error><strong>Circle Name </strong>can't be blank</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-90" appearance="outline" >
+                        <mat-label>Mastery Level :</mat-label>
+                        <input type="text" matInput placeholder="Enter the masteryLevel" formControlName="masteryLevel">
+                        <mat-error><strong>Mastery Level </strong>can't be blank</mat-error>
+                    </mat-form-field> -->
+
+                    <!-- <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Email Id :</mat-label>
+                        <input type="text" placeholder="Enter masteryLevel" matInput  formControlName="emailId">
+                        <mat-hint align="end">your emailId</mat-hint>
+                        <mat-error><strong>Email Id </strong>can't be blank</mat-error>
+                    </mat-form-field> -->
+
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Circle</mat-label>
+                        <mat-select formControlName="circle">
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Platform'">
+                            <mat-option value="Enterprise Solution & Architecture">Enterprise Solution & Architecture</mat-option>
+                            <mat-option value="Engineering Management">Engineering Management</mat-option>
+                            <mat-option value="Product">Product</mat-option>
+                            <mat-option value="DevOps & SRE">DevOps & SRE</mat-option>
+                          </div>
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Experience'">
+                            <mat-option value="Backend">Backend</mat-option>
+                            <mat-option value="Frontend">Frontend</mat-option>
+                            <mat-option value="Frontend-SAP & SF">Frontend-SAP & SF</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Cloud'">
+                            <mat-option value="Cloud Native Development">Cloud Native Development</mat-option>
+                            <mat-option value="Cloud Operations">Cloud Operations</mat-option>
+                            <mat-option value="Cloud Architecture">Cloud Architecture</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Data & AI'">
+                            <mat-option value="AIML">AIML</mat-option>
+                            <mat-option value="Full Stack Analysis">Full Stack Analysis</mat-option>
+                            <mat-option value="Data Engineering">Data Engineering</mat-option>
+                            <mat-option value="Database">Database</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Quality Engineering'">
+                            <mat-option value="Quality">Quality</mat-option>
+
+                          </div>
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Health Tech'">
+                            <mat-option value="Health Tech">Health Tech</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Web3.0'">
+                            <mat-option value="Blockchain">Blockchain</mat-option>
+                            <mat-option value="Metaverse">Metaverse</mat-option>
+                            <mat-option value="Gaming">Gaming</mat-option>
+                          </div>
+                        </mat-select>
+                        <mat-error><strong>Cricle Name</strong>can't be blank</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>Mastery Level</mat-label>
+                        <mat-select formControlName="masteryLevel">
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Platform'">
+                            <mat-option value="Apprentice" (click)="issueNftFrom.get('url').setValue(skillBadge[0].badgeURL)" (click)="imgs=skillBadge[0].badgeURL">Apprentice</mat-option>
+                            <mat-option value="Craftsmith" (click)="issueNftFrom.get('url').setValue(skillBadge[1].badgeURL)" (click)="imgs=skillBadge[1].badgeURL">Craftsmith</mat-option>
+                            <mat-option value="Artisan" (click)="issueNftFrom.get('url').setValue(skillBadge[2].badgeURL)" (click)="imgs=skillBadge[2].badgeURL">Artisan</mat-option>
+                            <mat-option value="Master" (click)="issueNftFrom.get('url').setValue(skillBadge[3].badgeURL)" (click)="imgs=skillBadge[3].badgeURL">Master</mat-option>
+                            <mat-option value="Grandmaster" (click)="issueNftFrom.get('url').setValue(skillBadge[4].badgeURL)" (click)="imgs=skillBadge[4].badgeURL">Grandmaster</mat-option>
+                          </div>
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Experience'">
+                            <mat-option value="Apprentice" (click)="issueNftFrom.get('url').setValue(skillBadge[5].badgeURL)" (click)="imgs=skillBadge[5].badgeURL">Apprentice</mat-option>
+                            <mat-option value="Craftsmith" (click)="issueNftFrom.get('url').setValue(skillBadge[6].badgeURL)" (click)="imgs=skillBadge[6].badgeURL">Craftsmith</mat-option>
+                            <mat-option value="Artisan" (click)="issueNftFrom.get('url').setValue(skillBadge[7].badgeURL)" (click)="imgs=skillBadge[7].badgeURL">Artisan</mat-option>
+                            <mat-option value="Master"(click)="issueNftFrom.get('url').setValue(skillBadge[8].badgeURL)" (click)="imgs=skillBadge[8].badgeURL">Master</mat-option>
+                            <mat-option value="Grandmaster" (click)="issueNftFrom.get('url').setValue(skillBadge[9].badgeURL)" (click)="imgs=skillBadge[9].badgeURL">Grandmaster</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Cloud'">
+                            <mat-option value="Apprentice" (click)="issueNftFrom.get('url').setValue(skillBadge[10].badgeURL)" (click)="imgs=skillBadge[10].badgeURL">Apprentice</mat-option>
+                            <mat-option value="Craftsmith" (click)="issueNftFrom.get('url').setValue(skillBadge[11].badgeURL)" (click)="imgs=skillBadge[11].badgeURL">Craftsmith</mat-option>
+                            <mat-option value="Artisan" (click)="issueNftFrom.get('url').setValue(skillBadge[12].badgeURL)" (click)="imgs=skillBadge[12].badgeURL">Artisan</mat-option>
+                            <mat-option value="Master" (click)="issueNftFrom.get('url').setValue(skillBadge[13].badgeURL)" (click)="imgs=skillBadge[13].badgeURL">Master</mat-option>
+                            <mat-option value="Grandmaster" (click)="issueNftFrom.get('url').setValue(skillBadge[14].badgeURL)" (click)="imgs=skillBadge[14].badgeURL">Grandmaster</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Data & AI'">
+                            <mat-option value="Apprentice"(click)="issueNftFrom.get('url').setValue(skillBadge[15].badgeURL)" (click)="imgs=skillBadge[15].badgeURL">Apprentice</mat-option>
+                            <mat-option value="Craftsmith" (click)="issueNftFrom.get('url').setValue(skillBadge[16].badgeURL)" (click)="imgs=skillBadge[16].badgeURL">Craftsmith</mat-option>
+                            <mat-option value="Artisan" (click)="issueNftFrom.get('url').setValue(skillBadge[17].badgeURL)" (click)="imgs=skillBadge[17].badgeURL">Artisan</mat-option>
+                            <mat-option value="Master" (click)="issueNftFrom.get('url').setValue(skillBadge[18].badgeURL)" (click)="imgs=skillBadge[18].badgeURL">Master</mat-option>
+                            <mat-option value="Grandmaster" (click)="issueNftFrom.get('url').setValue(skillBadge[19].badgeURL)" (click)="imgs=skillBadge[19].badgeURL">Grandmaster</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Quality Engineering'">
+                            <mat-option value="Apprentice"(click)="issueNftFrom.get('url').setValue(skillBadge[20].badgeURL)" (click)="imgs=skillBadge[20].badgeURL">Apprentice</mat-option>
+                            <mat-option value="Craftsmith" (click)="issueNftFrom.get('url').setValue(skillBadge[21].badgeURL)" (click)="imgs=skillBadge[21].badgeURL">Craftsmith</mat-option>
+                            <mat-option value="Artisan" (click)="issueNftFrom.get('url').setValue(skillBadge[22].badgeURL)" (click)="imgs=skillBadge[22].badgeURL">Artisan</mat-option>
+                            <mat-option value="Master" (click)="issueNftFrom.get('url').setValue(skillBadge[23].badgeURL)" (click)="imgs=skillBadge[23].badgeURL">Master</mat-option>
+                            <mat-option value="Grandmaster" (click)="issueNftFrom.get('url').setValue(skillBadge[24].badgeURL)" (click)="imgs=skillBadge[24].badgeURL">Grandmaster</mat-option>
+                          </div>
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Health Tech'">
+                            <mat-option value="Apprentice" (click)="issueNftFrom.get('url').setValue(skillBadge[25].badgeURL)" (click)="imgs=skillBadge[25].badgeURL">Apprentice </mat-option>
+                            <mat-option value="Craftsmith" (click)="issueNftFrom.get('url').setValue(skillBadge[26].badgeURL)" (click)="imgs=skillBadge[26].badgeURL">Craftsmith</mat-option>
+                            <mat-option value="Artisan" (click)="issueNftFrom.get('url').setValue(skillBadge[27].badgeURL)" (click)="imgs=skillBadge[27].badgeURL">Artisan</mat-option>
+                            <mat-option value="Master" (click)="issueNftFrom.get('url').setValue(skillBadge[28].badgeURL)" (click)="imgs=skillBadge[28].badgeURL">Master</mat-option>
+                            <mat-option value="Grandmaster" (click)="issueNftFrom.get('url').setValue(skillBadge[29].badgeURL)" (click)="imgs=skillBadge[29].badgeURL">Grandmaster</mat-option>
+                          </div>
+
+                          <div *ngIf="issueNftFrom.get('practice').value === 'Web3.0'">
+                            <mat-option value="Apprentice" (click)="issueNftFrom.get('url').setValue(skillBadge[30].badgeURL)" (click)="imgs=skillBadge[30].badgeURL">Apprentice</mat-option>
+                            <mat-option value="Craftsmith" (click)="issueNftFrom.get('url').setValue(skillBadge[31].badgeURL)" (click)="imgs=skillBadge[31].badgeURL">Craftsmith</mat-option>
+                            <mat-option value="Artisan" (click)="issueNftFrom.get('url').setValue(skillBadge[32].badgeURL)" (click)="imgs=skillBadge[32].badgeURL">Artisan</mat-option>
+                            <mat-option value="Master" (click)="issueNftFrom.get('url').setValue(skillBadge[33].badgeURL)" (click)="imgs=skillBadge[33].badgeURL">Master</mat-option>
+                            <mat-option value="Grandmaster" (click)="issueNftFrom.get('url').setValue(skillBadge[34].badgeURL)" (click)="imgs=skillBadge[34].badgeURL">Grandmaster</mat-option>
+                          </div>
+                        </mat-select>
+                        <mat-error>select the <strong>Practice</strong></mat-error>
+                      </mat-form-field>
+
+                    
+                    <mat-form-field class="w-90" appearance="outline">
+                        <mat-label>URL :</mat-label>
+                        <input type="text" placeholder="Enter url" matInput  formControlName="url">
+                        <mat-error><strong>url </strong>can't be blank</mat-error>
+                    </mat-form-field> 
+                    <div>
+                        <button mat-raised-button color="primary" (click)="final()">Issue NFT</button>
+                    </div>   
+                 </form>
+                </mat-card-content>
+              </mat-card>
+        </div>
+    </div>
+
+    <div fxFlex=" 1 1 40%" fxHide.lt-md>
+      <form [formGroup]="formGroup">
+        <mat-form-field class="w-100" appearance="outline" style="margin-top:20px;" >
+          <mat-label>
+            Employee
+          </mat-label>
+          <input formControlName="employee" matInput type="text" [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let item of filteredOptions" [value]="item" (click)="getData()">
+              {{item}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+          <mat-form-field class="w-50 mt" appearance="outline" >
+            <mat-label>practice :</mat-label>
+            <input type="text" placeholder="Enter practice"readonly matInput  formControlName="practice">
+        </mat-form-field>
+        <mat-form-field class="w-50 mt" appearance="outline" >
+          <mat-label>circle :</mat-label>
+          <input type="text" placeholder="Enter circle"readonly matInput  formControlName="circle">
+      </mat-form-field>
+        </div>
+      </form>
+      <img src="{{imgs}}" class="pop" alt="" width="40%" style="margin-top: 100px; margin-left: 150px;">
+    </div>
+    <div>
+        
+    </div>
+    
+</div>

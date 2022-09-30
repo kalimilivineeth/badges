@@ -1,0 +1,415 @@
+{
+    "info": {
+        "title": "Circle NFT",
+        "version": "1.0",
+        "description": "[Specification JSON](/api-spec)"
+    },
+    "paths": {
+        "/nft/retrieveAllNfts": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Get all the Nfts recorded in the ledger",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nfts": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ResponseNft"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/nft/issueNft": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReqBodyToIssueNFT"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success or failure message",
+                            "schema": {
+                                "type": "object",
+                                "items":{
+                                    "type": "object",
+                                "properties": {
+                                    "nft": {
+                                        "$ref": "#/definitions/ResponseNft"
+                                           }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+        "/nft/getNftById/{nftId}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "nftId",
+                    "description": "Numeric ID to get NFT",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the Nft details by ID",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nft": {
+                                    "$ref": "#/definitions/ResponseNft"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/nft/getNftsByUser/{userName}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "userName",
+                    "description": "UserName to get NFT",
+                    "required": true,
+                    "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all the nfts owned by User",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nfts": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/ResponseNft"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/nft/validateNft": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReqBodyToValidateNFT"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "valid or invalid message",
+                            "schema": {
+                                "type": "object",
+                                "items":{
+                                    "type": "object",
+                                "properties": {
+                                    "nft": {
+                                        "$ref": "#/definitions/ResponseNft"
+                                           }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            },
+
+            "/nft/history/{nftId}": {
+                "get": {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                        "in": "path",
+                        "name": "nftId",
+                        "description": "Numeric ID to get history of NFT",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Get the Nft history details by ID",
+                            "schema": {
+                                "type": "array",
+                                "items":{
+                                    "type": "object",
+                                "properties": {
+                                    "nft": {
+                                        "$ref": "#/definitions/ResponseNft"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "/nft/expireNft": {
+                "post": {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "Request access",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ReqBodyToExpireNFT"
+                            }
+                        }
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "success or failure message",
+                            "schema": {
+                                "type": "object",
+                                "items":{
+                                    "type": "object",
+                                "properties": {
+                                    "nft": {
+                                        "$ref": "#/definitions/ResponseNft"
+                                    }
+                                }
+                            }
+                        }
+                        }
+                    }
+                }
+            }
+
+        },
+
+
+        "definitions": {
+            "ReqBodyToIssueNFT":{
+                "required": [
+                    "userName",
+                    "fName",
+                    "lName",
+                    "practice",
+                    "circle",
+                    "masteryLevel",
+                    "emailId",
+                    "url"
+                ],
+                "properties": {
+                    "userName": {
+                        "type": "string"
+                    },
+                    "fName": {
+                        "type": "string"
+                    },
+                    "lName": {
+                        "type": "string"
+                    },
+                    
+                    "practice": {
+                        "type": "string"
+                    },
+                    "circle": {
+                        "type": "string"
+                    },
+                    "masteryLevel": {
+                        "type": "string"
+                    },
+                    "expiryDate": {
+                        "type": "string"
+                    },
+                    "emailId": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            },
+
+            "ReqBodyToValidateNFT":{
+                "required": [
+                    "userName",
+                    "fName",
+                    "lName",
+                    "practice",
+                    "circle",
+                    "masteryLevel",
+                    "emailId",
+                    "url",
+                    "nftId"
+                ],
+                "properties": {
+                    "userName": {
+                        "type": "string"
+                    },
+                    "fName": {
+                        "type": "string"
+                    },
+                    "lName": {
+                        "type": "string"
+                    },
+                    "practice": {
+                        "type": "string"
+                    },
+                    "circle": {
+                        "type": "string"
+                    },
+                    "masteryLevel": {
+                        "type": "string"
+                    },
+                    "expiryDate": {
+                        "type": "string"
+                    },
+                    "emailId": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
+                    "nftId": {
+                        "type": "string"
+                    }
+                }
+
+            },
+
+            "ReqBodyToExpireNFT":{
+                "required": [
+                    "nftId"
+                ],
+                "properties": {
+                    "nftId": {
+                        "type": "string"
+                    }
+                }
+
+            },
+
+            "ResponseNft": {
+                "type": "object",
+                "properties": {
+                    "practice": {
+                        "type": "string"
+                    },
+                    "circle": {
+                        "type": "string"
+                    },
+                    "docType": {
+                        "type": "string"
+                    },
+                    "emailId": {
+                        "type": "string"
+                    },
+                    "expiryDate": {
+                        "type": "string"
+                    },
+                    "fName": {
+                        "type": "string"
+                    },
+                    "lName": {
+                        "type": "string"
+                    },
+                    "masteryLevel": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "nftId": {
+                        "type": "string"
+                    },
+                    "nftOwner": {
+                        "type": "string"
+                    },
+                    "nftStatus": {
+                        "type": "string"
+                    },
+                    "nftURL": {
+                        "type": "string"
+                    },
+                    "owner": {
+                        "type": "string"
+                    },
+                    "symbol": {
+                        "type": "string"
+                    },
+                    "timeStamp": {
+                        "type": "string"
+                    }
+                }
+            }
+
+
+
+        },
+        "swagger": "2.0"
+    }
